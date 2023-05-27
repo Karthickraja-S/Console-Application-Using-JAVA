@@ -102,7 +102,7 @@ public class BankingService {
                         break;
             }
             // charge a maintenance fee .. but if he is in top3customer then , no need.
-            if(accountuser.transId % 10 == 0 && !Services.fetchTopNCustomers(3).contains(accountuser)){
+            if(accountuser.transId % 10 == 0 && !Services.fetchTopNCustomers(3).contains(accountuser) && transactionDone){
                 accountuser.balance -= 100;
                 accountuser.history.add(new TransHistory(++accountuser.transId, "Maintenance Fee", 100, accountuser.balance));
             }
