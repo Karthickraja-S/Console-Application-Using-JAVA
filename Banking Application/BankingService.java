@@ -105,6 +105,6 @@ public class BankingService {
                 accountuser.createOrUpdatePassword();
             }  
         }  // while loop ends.
-        ip.close();
+     //   ip.close();
     } 
 }
