@@ -76,18 +76,23 @@ public class BankingService {
     public static void initiateService(customer current_user){
         accountuser = current_user;
         boolean flag = true;
+        boolean transactionDone = false;
         while(flag){
-            System.out.println("1-withdrawl \n2-deposit \n3-transfer \n4-history \n5-logout");
+            System.out.println("OPTIONS : \n1-withdrawl \n2-deposit \n3-transfer \n4-history \n5-logout");
             int choice = ip.nextInt();
+        //    ip.nextLine();
             switch(choice){
                 case 1 : 
                         withdrawl();
+                        transactionDone=true;
                         break;
                 case 2 : 
                         cashDeposit();
+                        transactionDone=true;
                         break;
                 case 3 : 
                         accountTransfer();
+                        transactionDone=true;
                         break;
                 case 4 : 
                         transHistory();
@@ -101,12 +106,15 @@ public class BankingService {
                 accountuser.balance -= 100;
                 accountuser.history.add(new TransHistory(++accountuser.transId, "Maintenance Fee", 100, accountuser.balance));
             }
-            if(accountuser.transId%5==0){   // TASK 10 : Force Password Change .
+            // need to neglete the transaction of account opening.
+            // reason for transactionDone :: if the user gives 4 , then below executes again 
+            // if we dont have this boolean. ( THINK! )
+            if((accountuser.transId-1)%5==0 && transactionDone){   // TASK 10 : Force Password Change .
+                transactionDone = false;
                 System.out.println("For Security Reasons , after doing 5 transactions , It is ");
                 System.out.println("better to change the password ");
                 accountuser.createOrUpdatePassword();
             }  
         }  // while loop ends.
-     //   ip.close();
     } 
 }
