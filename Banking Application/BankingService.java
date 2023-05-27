@@ -59,6 +59,8 @@ public class BankingService {
                     dest.balance = dest.balance + amounttoBeTransferred;
                     accountuser.history.add(new TransHistory(++accountuser.transId,String.valueOf("TransferTo"+Acc_No),amounttoBeTransferred,accountuser.balance));
                     dest.history.add(new TransHistory(++dest.transId,String.valueOf("TransferFrom"+accountuser.accno),amounttoBeTransferred,dest.balance));
+            }else{
+                System.out.println("The balance is not sufficient to transfer. \nYour current balance : "+accountuser.balance);
             }
             if(amounttoBeTransferred > 5000){
                 // Charge a operational fee
