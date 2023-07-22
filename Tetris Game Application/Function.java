@@ -66,7 +66,7 @@ public class Function {
         {
             // checking from bottom..
             boolean toBeRemoved = true;
-            for(int col=1;col<playableGrid[0].length-2;col++)
+            for(int col=1;col<playableGrid[0].length-1;col++)
             {
                 if(playableGrid[row][col]!='*')
                 {
@@ -81,7 +81,7 @@ public class Function {
                 sc=100;
                 for(int selectedRow = row;selectedRow>1;selectedRow--)
                 {
-                    for(int col=1;col<playableGrid[0].length-2;col++)
+                    for(int col=1;col<playableGrid[0].length-1;col++)
                     {
                         // replaces the above value to below
                         playableGrid[selectedRow][col] = playableGrid[selectedRow-1][col];
