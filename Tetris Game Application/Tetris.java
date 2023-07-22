@@ -1,5 +1,11 @@
 import java.util.*;
 public class Tetris{
+
+    static int generateRandomNumber() {
+        int num = new Random().nextInt(7);
+     //   System.out.println(num);
+        return num;
+    }
     public static void main(String[] args) {
 
         // Module 1 : create 18x10 Matrix
@@ -11,9 +17,11 @@ public class Tetris{
         int prevScore=0;
         while(true)
         {
-            System.out.println("Enter Shape Input : (S,L,T,SQ,Z,ML,I) : ");
-            Scanner ip = new Scanner(System.in);
-            String ch = ip.nextLine();
+            String shapes[] = {"S","L","T","SQ","Z","ML","I"};
+
+        //    System.out.println("Enter Shape Input : (S,L,T,SQ,Z,ML,I) : ");
+        //    Scanner ip = new Scanner(System.in);
+            String ch = shapes[generateRandomNumber()];
 
             char[][] shapeMatrix = Shape.getShape(ch);
 
