@@ -28,7 +28,55 @@ public class PatternProgramming {
             System.out.println();
         }
     }
+ public static void printSnakeMatrix(int[][] arr) {
+    int row=0,col=0;
+    boolean isUp = true;
+    while(row!=arr.length-1 || col != arr[0].length-1) {
+     // System.out.println("row : "+row+" col : "+col);
+      System.out.print(arr[row][col]+"->");
+      if(isUp) {
+        // need to check whether top right directions..
+        if(row-1 >= 0 && col+1 <= arr[0].length-1 ) {
+          // we can move to top right.
+          row--;
+          col++;
+        } else {
+          // need to move right.
+          // also if it reaches last column we have to move bottom..!
+          if(col == arr[0].length-1) {
+            row++;
+          } else {
+            col++;
+          }
+          isUp = false;
+        }
+      } else {
+        // need to check bottom left directions..
+        if(col-1 >= 0 && row+1 <= arr.length-1 ) {
+          col--;
+          row++;
+        } else {
+          // move to bottom.
+          // also if it reaches last row, then we have to move right.
+          if(row == arr.length-1) {
+            col++;
+          } else {
+            row++;
+          }
+          isUp=true;
+        }
+      }
+      
+    }
+   System.out.println(arr[row][col]);
+    
+  }
   public static void main(String args[]){
       printPattern1(5);
+      int arr[][] = {{1, 2, 3, 4},
+                     {5, 6, 7, 8},
+                     {9,10,11,12}
+      };
+      printSnakeMatrix(arr);
   }
 }
