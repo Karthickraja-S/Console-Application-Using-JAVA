@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class PatternProgramming {
-  public static void printPattern1(int R) {
-        /*
+    /**
         input = 5
             1
           2 3 2
@@ -10,6 +9,7 @@ public class PatternProgramming {
       4 5 6 7 6 5 4
     5 6 7 8 9 8 7 6 5 4
          */
+  public static void printPattern1(int R) {
         for(int row=1;row<=R ; row ++) {
             // here i need 8 space for 1st row , 6 for 2nd row , 4 for 3rd row , 2 for 4th row based on input
             for (int space = 0; space < ((R-row) * 2); space++) {  // why additional bracket ? BODMAS RULE !!
@@ -68,9 +68,47 @@ public class PatternProgramming {
       }
       
     }
-   System.out.println(arr[row][col]);
-    
+   System.out.println(arr[row][col]); 
   }
+     /**
+     * {{1,2,3},<br>
+     *  {4,5,6},<br>
+     *  {7,8,9} <br>
+     * }
+     * OP -> 124753689
+     * @param mat
+     * PRINTING ZIGZAG MATRIX ...
+     */
+    public static void printDiagonalMatrix(int[][] mat) {
+        int r=0,c=0;
+        int R = mat.length,C=mat[0].length;
+        boolean bottomLeft = false;
+        while(r<R && c<C) {
+            System.out.print(mat[r][c]+"->");
+            if(!bottomLeft) {
+                if (r > 0 && c < C-1) {
+                    // top right is possible here
+                    r--;
+                    c++;
+                } else {
+                    // need to check whether need to go right OR bottom
+                    if (c == C - 1) r++; // while going in top right , if i reach the corner then ,i need to come down
+                    else c++;
+                    bottomLeft = true;
+                }
+            } else {
+                if (c>0 && r<R-1) {
+                    // bottom left is possible here
+                    r++;c--;
+                } else {
+                    // here also need to decide whether to go right OR bottom
+                    if(r==R-1)c++;
+                    else r++;
+                    bottomLeft = false;
+                }
+            }
+        }
+    }
   public static void main(String args[]){
       printPattern1(5);
       int arr[][] = {{1, 2, 3, 4},
@@ -78,5 +116,6 @@ public class PatternProgramming {
                      {9,10,11,12}
       };
       printSnakeMatrix(arr);
+      printDiagonalMatrix(arr);
   }
 }
