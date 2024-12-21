@@ -109,6 +109,42 @@ public class PatternProgramming {
             }
         }
     }
+    /**
+     *    1
+     *   3 2
+     *  6 5 4
+     * 10 9 8 7
+     * 10 9 8 7
+     *  6 5 4
+     *   3 2
+     *    1
+     * @param R
+     */
+    public static void printPattern2(int R) {
+        int counter = 1;
+        for(int row = 1; row<=R ; row++) {
+            int numToBePrinted = counter;
+            for(int space = R-row ; space>0; space--) {
+                System.out.print(" ");
+            }
+            for(int numCount=1; numCount<=row; numCount++) {
+                System.out.print(numToBePrinted-- + " ");
+            }
+            System.out.println();
+            counter += (row+1);
+        }
+        // for R=4 , the counter will be 15 at this end. we have to revert again.
+        counter -=  (R+1);
+        for(int row=1; row<=R; row++) {
+            for(int space = row ; space>1; space--) {
+                System.out.print(" ");
+            }
+            for(int numCount=R; numCount>=row;numCount--) {
+                System.out.print(counter-- + " ");
+            }
+            System.out.println();
+        }
+    }
   public static void main(String args[]){
       printPattern1(5);
       int arr[][] = {{1, 2, 3, 4},
@@ -117,5 +153,6 @@ public class PatternProgramming {
       };
       printSnakeMatrix(arr);
       printDiagonalMatrix(arr);
+      printPattern2(10);
   }
 }
