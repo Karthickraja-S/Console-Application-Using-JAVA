@@ -58,6 +58,8 @@ public class StreamAPI {
      * <br>
      * max() , min() which u can find max,min values by internal sorting / customised sorting based on comparator overriding
      * <br>
+     * skip() which accepts the num and skips the position to that place , limit() accepts num and give only the range u given.
+     * <br>
      * anymatch() - accepts a predicate impl and if any value returns true, then there is a data already in stream of list
      * <br>
      * collect() - accepts a collector where u can join, convert to List , groupBy data with
@@ -74,6 +76,9 @@ public class StreamAPI {
         // Given a list of integers, write a program to find and print the maximum element using Java Stream API
         System.out.println("Min element : "+ nums.stream().mapToInt(value -> value).min().getAsInt());
         System.out.println("Max element : "+ nums.stream().mapToInt(value -> value).max().getAsInt());
+
+        System.out.println("Max element of first 5 num: "+ nums.stream().mapToInt(value -> value)
+                .limit(5).max().getAsInt());
 
         // Write a program to filter out all the even numbers from a list using Java Stream API
         List<Integer> evenNum = nums.stream().filter(x -> x%2==0).collect(Collectors.toList());
